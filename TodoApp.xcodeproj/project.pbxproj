@@ -13,6 +13,9 @@
 		F0353A5724A4EB9C00785C5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0353A5624A4EB9C00785C5C /* Assets.xcassets */; };
 		F0353A5A24A4EB9C00785C5C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0353A5824A4EB9C00785C5C /* LaunchScreen.storyboard */; };
 		F04E095B24A7C47F009C8A89 /* TodosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04E095A24A7C47F009C8A89 /* TodosController.swift */; };
+		F054474F24AC781A009E5F2A /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F054474E24AC781A009E5F2A /* OpenSans-Light.ttf */; };
+		F054475124AC7822009E5F2A /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F054475024AC7822009E5F2A /* OpenSans-Regular.ttf */; };
+		F054475324AC7827009E5F2A /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F054475224AC7827009E5F2A /* OpenSans-Semibold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +28,9 @@
 		F0353A5924A4EB9C00785C5C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F0353A5B24A4EB9C00785C5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F04E095A24A7C47F009C8A89 /* TodosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosController.swift; sourceTree = "<group>"; };
+		F054474E24AC781A009E5F2A /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Light.ttf"; path = "../../../Library/Fonts/OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		F054475024AC7822009E5F2A /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Regular.ttf"; path = "../../../Library/Fonts/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		F054475224AC7827009E5F2A /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Semibold.ttf"; path = "../../../Library/Fonts/OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		F7D09C96A10BDE2F11F2F90B /* Pods_TodoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -83,6 +89,9 @@
 				F04E095A24A7C47F009C8A89 /* TodosController.swift */,
 				F0353A5324A4EB9C00785C5C /* Main.storyboard */,
 				F0353A5624A4EB9C00785C5C /* Assets.xcassets */,
+				F054474E24AC781A009E5F2A /* OpenSans-Light.ttf */,
+				F054475024AC7822009E5F2A /* OpenSans-Regular.ttf */,
+				F054475224AC7827009E5F2A /* OpenSans-Semibold.ttf */,
 				F0353A5824A4EB9C00785C5C /* LaunchScreen.storyboard */,
 				F0353A5B24A4EB9C00785C5C /* Info.plist */,
 			);
@@ -149,8 +158,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F054475324AC7827009E5F2A /* OpenSans-Semibold.ttf in Resources */,
+				F054475124AC7822009E5F2A /* OpenSans-Regular.ttf in Resources */,
 				F0353A5A24A4EB9C00785C5C /* LaunchScreen.storyboard in Resources */,
 				F0353A5724A4EB9C00785C5C /* Assets.xcassets in Resources */,
+				F054474F24AC781A009E5F2A /* OpenSans-Light.ttf in Resources */,
 				F0353A5524A4EB9C00785C5C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
