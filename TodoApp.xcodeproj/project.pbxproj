@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C71836D3CC5B19B151D8450E /* Pods_TodoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D09C96A10BDE2F11F2F90B /* Pods_TodoApp.framework */; };
+		F01DF8CF24B8BB4600219135 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01DF8CE24B8BB4600219135 /* ProjectCell.swift */; };
+		F02E9FFE24A8E5F200FFE81A /* TodoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02E9FFD24A8E5F200FFE81A /* TodoCell.swift */; };
 		F0353A5024A4EB9C00785C5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0353A4F24A4EB9C00785C5C /* AppDelegate.swift */; };
 		F0353A5524A4EB9C00785C5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0353A5324A4EB9C00785C5C /* Main.storyboard */; };
 		F0353A5724A4EB9C00785C5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0353A5624A4EB9C00785C5C /* Assets.xcassets */; };
@@ -16,11 +18,14 @@
 		F054474F24AC781A009E5F2A /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F054474E24AC781A009E5F2A /* OpenSans-Light.ttf */; };
 		F054475124AC7822009E5F2A /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F054475024AC7822009E5F2A /* OpenSans-Regular.ttf */; };
 		F054475324AC7827009E5F2A /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F054475224AC7827009E5F2A /* OpenSans-Semibold.ttf */; };
+		F0E6D92424B257FA003CDDCE /* AddTodoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E6D92324B257FA003CDDCE /* AddTodoController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4192A99D98B46CDF3214EC77 /* Pods-TodoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoApp.debug.xcconfig"; path = "Target Support Files/Pods-TodoApp/Pods-TodoApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B09C430496F1AC20EA39283E /* Pods-TodoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoApp.release.xcconfig"; path = "Target Support Files/Pods-TodoApp/Pods-TodoApp.release.xcconfig"; sourceTree = "<group>"; };
+		F01DF8CE24B8BB4600219135 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
+		F02E9FFD24A8E5F200FFE81A /* TodoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCell.swift; sourceTree = "<group>"; };
 		F0353A4C24A4EB9C00785C5C /* TodoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0353A4F24A4EB9C00785C5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0353A5424A4EB9C00785C5C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -31,6 +36,7 @@
 		F054474E24AC781A009E5F2A /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Light.ttf"; path = "../../../Library/Fonts/OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		F054475024AC7822009E5F2A /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Regular.ttf"; path = "../../../Library/Fonts/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		F054475224AC7827009E5F2A /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Semibold.ttf"; path = "../../../Library/Fonts/OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		F0E6D92324B257FA003CDDCE /* AddTodoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoController.swift; sourceTree = "<group>"; };
 		F7D09C96A10BDE2F11F2F90B /* Pods_TodoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -87,6 +93,9 @@
 			children = (
 				F0353A4F24A4EB9C00785C5C /* AppDelegate.swift */,
 				F04E095A24A7C47F009C8A89 /* TodosController.swift */,
+				F0E6D92324B257FA003CDDCE /* AddTodoController.swift */,
+				F02E9FFD24A8E5F200FFE81A /* TodoCell.swift */,
+				F01DF8CE24B8BB4600219135 /* ProjectCell.swift */,
 				F0353A5324A4EB9C00785C5C /* Main.storyboard */,
 				F0353A5624A4EB9C00785C5C /* Assets.xcassets */,
 				F054474E24AC781A009E5F2A /* OpenSans-Light.ttf */,
@@ -217,6 +226,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0353A5024A4EB9C00785C5C /* AppDelegate.swift in Sources */,
+				F01DF8CF24B8BB4600219135 /* ProjectCell.swift in Sources */,
+				F02E9FFE24A8E5F200FFE81A /* TodoCell.swift in Sources */,
+				F0E6D92424B257FA003CDDCE /* AddTodoController.swift in Sources */,
 				F04E095B24A7C47F009C8A89 /* TodosController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
