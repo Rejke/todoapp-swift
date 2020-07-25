@@ -13,7 +13,7 @@ class Project: JSONableProtocol {
     var id: Int
     var title: String
     
-    required init(parameter: JSON){
+    required init(parameter: JSON) {
         id = parameter["id"].intValue
         title = parameter["title"].stringValue
     }
