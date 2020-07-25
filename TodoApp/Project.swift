@@ -9,11 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-protocol JSONable {
-    init?(parameter: JSON)
-}
-
-class Project: JSONable {
+class Project: JSONableProtocol {
     var id: Int
     var title: String
     

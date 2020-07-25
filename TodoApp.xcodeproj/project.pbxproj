@@ -20,6 +20,7 @@
 		F054475124AC7822009E5F2A /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F054475024AC7822009E5F2A /* OpenSans-Regular.ttf */; };
 		F054475324AC7827009E5F2A /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F054475224AC7827009E5F2A /* OpenSans-Semibold.ttf */; };
 		F0E6D92424B257FA003CDDCE /* AddTodoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E6D92324B257FA003CDDCE /* AddTodoController.swift */; };
+		F0F6BE4924CC325000456A70 /* JSONableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F6BE4824CC325000456A70 /* JSONableProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		F054475024AC7822009E5F2A /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Regular.ttf"; path = "../../../Library/Fonts/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		F054475224AC7827009E5F2A /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Semibold.ttf"; path = "../../../Library/Fonts/OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		F0E6D92324B257FA003CDDCE /* AddTodoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoController.swift; sourceTree = "<group>"; };
+		F0F6BE4824CC325000456A70 /* JSONableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONableProtocol.swift; sourceTree = "<group>"; };
 		F7D09C96A10BDE2F11F2F90B /* Pods_TodoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -98,6 +100,7 @@
 				F02E9FFD24A8E5F200FFE81A /* TodoCell.swift */,
 				F01DF8CE24B8BB4600219135 /* ProjectCell.swift */,
 				F01DE8DD24CB64F300C61648 /* Project.swift */,
+				F0F6BE4824CC325000456A70 /* JSONableProtocol.swift */,
 				F0353A5324A4EB9C00785C5C /* Main.storyboard */,
 				F0353A5624A4EB9C00785C5C /* Assets.xcassets */,
 				F054474E24AC781A009E5F2A /* OpenSans-Light.ttf */,
@@ -232,6 +235,7 @@
 				F02E9FFE24A8E5F200FFE81A /* TodoCell.swift in Sources */,
 				F0E6D92424B257FA003CDDCE /* AddTodoController.swift in Sources */,
 				F04E095B24A7C47F009C8A89 /* TodosController.swift in Sources */,
+				F0F6BE4924CC325000456A70 /* JSONableProtocol.swift in Sources */,
 				F01DE8DE24CB64F300C61648 /* Project.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
