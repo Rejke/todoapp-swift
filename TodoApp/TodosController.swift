@@ -68,7 +68,7 @@ class TodosController: UIViewController, UITableViewDataSource, UITableViewDeleg
 
 extension JSON {
     func to<T>(type: T?) -> Any? {
-        if let baseObj = type as? JSONable.Type {
+        if let baseObj = type as? JSONableProtocol.Type {
             if self.type == .array {
                 var arrObject: [Any] = []
                 for obj in self.arrayValue {
