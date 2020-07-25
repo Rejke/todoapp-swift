@@ -7,3 +7,18 @@
 //
 
 import Foundation
+import SwiftyJSON
+
+protocol JSONable {
+    init?(parameter: JSON)
+}
+
+class Project: JSONable {
+    var id: Int
+    var title: String
+    
+    required init(parameter: JSON){
+        id = parameter["id"].intValue
+        title = parameter["title"].stringValue
+    }
+}

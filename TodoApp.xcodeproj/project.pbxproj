@@ -97,6 +97,7 @@
 				F0E6D92324B257FA003CDDCE /* AddTodoController.swift */,
 				F02E9FFD24A8E5F200FFE81A /* TodoCell.swift */,
 				F01DF8CE24B8BB4600219135 /* ProjectCell.swift */,
+				F01DE8DD24CB64F300C61648 /* Project.swift */,
 				F0353A5324A4EB9C00785C5C /* Main.storyboard */,
 				F0353A5624A4EB9C00785C5C /* Assets.xcassets */,
 				F054474E24AC781A009E5F2A /* OpenSans-Light.ttf */,
@@ -104,7 +105,6 @@
 				F054475224AC7827009E5F2A /* OpenSans-Semibold.ttf */,
 				F0353A5824A4EB9C00785C5C /* LaunchScreen.storyboard */,
 				F0353A5B24A4EB9C00785C5C /* Info.plist */,
-				F01DE8DD24CB64F300C61648 /* Project.swift */,
 			);
 			path = TodoApp;
 			sourceTree = "<group>";
