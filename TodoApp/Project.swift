@@ -12,6 +12,7 @@ import SwiftyJSON
 class Project: JSONableProtocol {
     var id: Int
     var title: String
+    var todos: [Todo] = []
     
     required init(parameter: JSON) {
         id = parameter["id"].intValue
