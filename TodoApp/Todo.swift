@@ -17,7 +17,7 @@ class Todo: JSONableProtocol {
     
     required init(parameter: JSON) {
         id = parameter["id"].intValue
-        text = parameter["title"].stringValue
+        text = parameter["text"].stringValue
         isCompleted = parameter["is_completed"].boolValue
         projectId = parameter["project_id"].intValue
     }
