@@ -28,7 +28,7 @@ class TodoCell: UITableViewCell {
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: textOfLabel!)
             
             if checked == true {
-                attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
+                attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
                 label.text = ""
                 label.attributedText = attributeString
             } else {
