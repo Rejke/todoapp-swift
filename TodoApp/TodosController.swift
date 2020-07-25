@@ -16,8 +16,6 @@ class TodosController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     var projects: [Project] = []
     
-    var todos = [["Feed entire family"], ["Finish things"], ["Eat potato"]]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,6 +26,33 @@ class TodosController: UIViewController, UITableViewDataSource, UITableViewDeleg
                     self.projects = resData as! [Project]
                 }
                 if self.projects.count > 0 {
+                    self.tableView.reloadData()
+                }
+            }
+        }
+        
+        var todos: [Todo] = []
+        
+        Alamofire.request("https://nameless-dawn-11100.herokuapp.com/api/todo").responseJSON { (responseData) -> Void in
+            if((responseData.result.value) != nil) {
+                let swiftyJsonVar = JSON(responseData.result.value!)
+                if let resData = swiftyJsonVar.to(type: Todo.self) {
+                    todos = resData as! [Todo]
+                }
+                if todos.count > 0 {
+                    for todo in todos {
+                        if todo.projectId == self.projects[todo.projectId - 1].id {
+                            self.projects[todo.projectId - 1].todos.append(todo)
+                        } else {
+                            for i in todo.projectId...(self.projects.count - 1) {
+                                if todo.projectId == self.projects[i].id {
+                                    self.projects[i].todos.append(todo)
+                                    break
+                                }
+                            }
+                        }
+                    }
+                    
                     self.tableView.reloadData()
                 }
             }
@@ -47,7 +72,7 @@ class TodosController: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todos[section].count
+        return projects[section].todos.count
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -60,8 +85,9 @@ class TodosController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "todoCell") as! TodoCell
-        cell.textOfLabel = todos[indexPath.section][indexPath.row]
-        cell.checked = false
+        cell.textOfLabel = projects[indexPath.section].todos[indexPath.row].text
+        cell.checkBox.checkState = projects[indexPath.section].todos[indexPath.row].isCompleted ? .checked : .unchecked
+        cell.checked = projects[indexPath.section].todos[indexPath.row].isCompleted
         return cell
     }
 }
