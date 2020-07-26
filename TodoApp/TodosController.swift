@@ -9,13 +9,14 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import CommonCrypto
 
 class TodosController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet var tableView: UITableView!
     
     var projects: [Project] = []
-    var lastResultSize = 0
+    var lastResultMD5: Data? = nil
     var requestResult = false
     
     override func viewDidLoad() {
@@ -45,6 +46,7 @@ class TodosController: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(section)
         return self.projects[section].todos.count
     }
     
@@ -81,7 +83,7 @@ class TodosController: UIViewController, UITableViewDataSource, UITableViewDeleg
         Alamofire.request("https://nameless-dawn-11100.herokuapp.com/api/todo").responseJSON { (responseData) -> Void in
             if((responseData.result.value) != nil) {
                 let swiftyJsonVar = JSON(responseData.result.value!)
-                self.lastResultSize = swiftyJsonVar.rawString()!.count
+                self.lastResultMD5 = self.MD5(string: swiftyJsonVar.rawString()!)
                 if let resData = swiftyJsonVar.to(type: Todo.self) {
                     todos = resData as! [Todo]
                 }
@@ -110,7 +112,7 @@ class TodosController: UIViewController, UITableViewDataSource, UITableViewDeleg
         Alamofire.request("https://nameless-dawn-11100.herokuapp.com/api/todo").responseJSON { (responseData) -> Void in
             if((responseData.result.value) != nil) {
                 let swiftyJsonVar = JSON(responseData.result.value!)
-                if self.lastResultSize != swiftyJsonVar.rawString()!.count {
+                if self.lastResultMD5 != self.MD5(string: swiftyJsonVar.rawString()!) {
                     self.requestResult = true
                 }
             }
@@ -124,6 +126,19 @@ class TodosController: UIViewController, UITableViewDataSource, UITableViewDeleg
         if needUpdateAPI() {
             getProjectsAPI()
         }
+    }
+    
+    func MD5(string: String) -> Data {
+        let messageData = string.data(using:.utf8)!
+        var digestData = Data(count: Int(CC_MD5_DIGEST_LENGTH))
+        
+        _ = digestData.withUnsafeMutableBytes {digestBytes in
+            messageData.withUnsafeBytes {messageBytes in
+                CC_MD5(messageBytes, CC_LONG(messageData.count), digestBytes)
+            }
+        }
+        
+        return digestData
     }
 }
 
