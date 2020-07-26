@@ -8,6 +8,8 @@
 
 import UIKit
 import M13Checkbox
+import Alamofire
+import SwiftyJSON
 
 class TodoCell: UITableViewCell {
 
@@ -21,7 +23,20 @@ class TodoCell: UITableViewCell {
         if sender.checkState != lCheckState {
             checked = !(checked!)
         }
+        
+        if let jsonData = try? JSON(["text": label.text!, "is_completed": checked!, "project_id": self.projectId!]).rawData() {
+            
+            var request = URLRequest(url: URL(string: "https://nameless-dawn-11100.herokuapp.com/api/todo/update/" + String(self.todoId!))!)
+            request.httpMethod = HTTPMethod.patch.rawValue
+            request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            Alamofire.request(request)
+        }
     }
+    
+    var todoId: Int?
+    var projectId: Int?
     
     var checked: Bool? {
         didSet {

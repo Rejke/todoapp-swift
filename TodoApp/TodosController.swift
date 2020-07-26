@@ -58,6 +58,8 @@ class TodosController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "todoCell") as! TodoCell
+        cell.todoId = self.projects[indexPath.section].todos[indexPath.row].id
+        cell.projectId = self.projects[indexPath.section].todos[indexPath.row].projectId
         cell.textOfLabel = self.projects[indexPath.section].todos[indexPath.row].text
         cell.checkBox.checkState = self.projects[indexPath.section].todos[indexPath.row].isCompleted ? .checked : .unchecked
         cell.checked = self.projects[indexPath.section].todos[indexPath.row].isCompleted
