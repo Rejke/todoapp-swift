@@ -15,18 +15,61 @@ class TodosController: UIViewController, UITableViewDataSource, UITableViewDeleg
     @IBOutlet var tableView: UITableView!
     
     var projects: [Project] = []
+    var lastResultSize = 0
+    var requestResult = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getProjectsAPI()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PresentSegue" {
+            if let destVC = (segue.destination as! UINavigationController).topViewController as? AddTodoController {
+                destVC.projects = self.projects
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40;
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60;
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.projects.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.projects[section].todos.count
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "project")
+        cell?.layer.borderWidth = 1
+        cell?.layer.borderColor = UIColor(red: 238 / 255, green: 238 / 255, blue: 238 / 255, alpha: 1).cgColor
+        cell?.textLabel?.text = self.projects[section].title
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "todoCell") as! TodoCell
+        cell.textOfLabel = self.projects[indexPath.section].todos[indexPath.row].text
+        cell.checkBox.checkState = self.projects[indexPath.section].todos[indexPath.row].isCompleted ? .checked : .unchecked
+        cell.checked = self.projects[indexPath.section].todos[indexPath.row].isCompleted
+        return cell
+    }
+    
+    func getProjectsAPI() {
         Alamofire.request("https://nameless-dawn-11100.herokuapp.com/api/projects").responseJSON { (responseData) -> Void in
             if((responseData.result.value) != nil) {
                 let swiftyJsonVar = JSON(responseData.result.value!)
                 if let resData = swiftyJsonVar.to(type: Project.self) {
                     self.projects = resData as! [Project]
-                }
-                if self.projects.count > 0 {
-                    self.tableView.reloadData()
                 }
             }
         }
@@ -36,9 +79,11 @@ class TodosController: UIViewController, UITableViewDataSource, UITableViewDeleg
         Alamofire.request("https://nameless-dawn-11100.herokuapp.com/api/todo").responseJSON { (responseData) -> Void in
             if((responseData.result.value) != nil) {
                 let swiftyJsonVar = JSON(responseData.result.value!)
+                self.lastResultSize = swiftyJsonVar.rawString()!.count
                 if let resData = swiftyJsonVar.to(type: Todo.self) {
                     todos = resData as! [Todo]
                 }
+                
                 if todos.count > 0 {
                     for todo in todos {
                         if todo.projectId == self.projects[todo.projectId - 1].id {
@@ -59,36 +104,24 @@ class TodosController: UIViewController, UITableViewDataSource, UITableViewDeleg
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40;
+    func needUpdateAPI() -> Bool {
+        Alamofire.request("https://nameless-dawn-11100.herokuapp.com/api/todo").responseJSON { (responseData) -> Void in
+            if((responseData.result.value) != nil) {
+                let swiftyJsonVar = JSON(responseData.result.value!)
+                if self.lastResultSize != swiftyJsonVar.rawString()!.count {
+                    self.requestResult = true
+                }
+            }
+        }
+        return self.requestResult
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60;
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return projects.count
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return projects[section].todos.count
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "project")
-        cell?.layer.borderWidth = 1
-        cell?.layer.borderColor = UIColor(red: 238 / 255, green: 238 / 255, blue: 238 / 255, alpha: 1).cgColor
-        cell?.textLabel?.text = projects[section].title
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "todoCell") as! TodoCell
-        cell.textOfLabel = projects[indexPath.section].todos[indexPath.row].text
-        cell.checkBox.checkState = projects[indexPath.section].todos[indexPath.row].isCompleted ? .checked : .unchecked
-        cell.checked = projects[indexPath.section].todos[indexPath.row].isCompleted
-        return cell
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if needUpdateAPI() {
+            getProjectsAPI()
+        }
     }
 }
 

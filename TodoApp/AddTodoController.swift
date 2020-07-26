@@ -7,21 +7,26 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class AddTodoController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var tfParent: UIView!
     
-    var projects = ["Family", "Work", "Other"]
+    var projects: [Project] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        tfParent.layer.borderWidth = 1
+        tfParent.layer.borderColor = UIColor(red: 238 / 255, green: 238 / 255, blue: 238 / 255, alpha: 1).cgColor
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 80
+        return 0
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -36,17 +41,11 @@ class AddTodoController: UIViewController, UITableViewDataSource, UITableViewDel
         return projects.count
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "todoField")
-        cell?.layer.borderWidth = 1
-        cell?.layer.borderColor = UIColor(red: 238 / 255, green: 238 / 255, blue: 238 / 255, alpha: 1).cgColor
-        return cell
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "projectCell") as! ProjectCell
         
-        cell.label.text = projects[indexPath.row]
+        cell.label.text = projects[indexPath.row].title
+        cell.tag = projects[indexPath.row].id
         
         return cell
     }
@@ -57,14 +56,28 @@ class AddTodoController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     @IBAction func doneButtonClicked(_ sender: UIButton) {
-        dismiss(animated: true)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        if tableView.indexPathForSelectedRow == nil {
+            return
+        }
         
-        let indexPath = IndexPath(row: 0, section: 0)
-        tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        let selectedCell = tableView.cellForRow(at: tableView.indexPathForSelectedRow!) as UITableViewCell?
+        
+        if textField!.text!.isEmpty {
+            return
+        }
+        
+        if let jsonData = try? JSON(["text": textField!.text!, "is_completed": false, "project_id": selectedCell!.tag]).rawData() {
+            
+            var request = URLRequest(url: URL(string: "https://nameless-dawn-11100.herokuapp.com/api/todo/create")!)
+            request.httpMethod = HTTPMethod.post.rawValue
+            request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            Alamofire.request(request).responseString { response in
+                if response.result.error == nil {
+                    self.dismiss(animated: true)
+                }
+            }
+        }
     }
-    
 }
